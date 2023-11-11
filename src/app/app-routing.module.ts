@@ -28,6 +28,20 @@ const routes: Routes = [
     path: 'resset-password',
     loadChildren: () => import('./pages/resset-password/resset-password.module').then( m => m.RessetPasswordPageModule)
   },
+  {
+    path: 'recipe',
+    loadChildren: () => import('./pages/recipe/recipe.module').then( m => m.RecipePageModule)
+  },
+  
+  {
+    path: 'add-new-recipe',
+    loadChildren: () => import('./pages/add-new-recipe/add-new-recipe.module').then( m => m.AddNewRecipePageModule)
+  },
+  {
+    path: 'update-recipe',
+    loadChildren: () => import('./pages/update-recipe/update-recipe.module').then( m => m.UpdateRecipePageModule)
+  },
+
 ];
 
 @NgModule({

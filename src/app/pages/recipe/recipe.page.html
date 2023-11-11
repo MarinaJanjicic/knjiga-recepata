@@ -1,0 +1,21 @@
+<ion-header [translucent]="true">
+  <ion-toolbar> <ion-img (click)="cancel()" src="assets/icon/nazad.png"/> 
+    <ion-title><h1>{{recipe?.name}}</h1> </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+     
+      <p>{{recipe?.description}}</p>
+
+    </ion-card-content>
+    <ion-row>
+      <ion-button (click)="goToUpdatePage(recipe)">Izmeni recept</ion-button>
+      <ion-button (click)="deleteRecipe()">Izbrisi recept</ion-button>
+    </ion-row>
+    <br>
+  </ion-card>
+</ion-content>
+

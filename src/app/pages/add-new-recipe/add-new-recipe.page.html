@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>Unesite novi recept</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-textarea label="Ime recepta" placeholder="Unesite ime"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Kategorija" placeholder="Izaberite kategoriju">
+          <ion-select-option value="slano">slano</ion-select-option>
+          <ion-select-option value="slatko">slatko</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea label="Recept" placeholder="Unesite recept" [autoGrow]="true"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-button>Dodaj recept</ion-button>
+      </ion-item>
+
+    </ion-card-content>
+  </ion-card>
+</ion-content>

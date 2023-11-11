@@ -1,33 +1,19 @@
-/*import { Component, OnInit } from '@angular/core';
-//import { AutheticationService } from '../authetication.service';
-import {FormBuilder, FormGroup, Validators} from '@angular/forms';
-import { LoadingController } from '@ionic/angular';
+import { Component, OnInit } from '@angular/core';
+
 @Component({
-  selector: 'app-register',
-  templateUrl: './register.page.html',
-  styleUrls: ['./register.page.scss'],
+  selector: 'app-signup',
+  templateUrl: './signup.page.html',
+  styleUrls: ['./signup.page.scss'],
 })
-export class RegisterPage implements OnInit {
-   regForm: FormGroup | undefined;
+export class SignupPage implements OnInit {
+   
 
 
-  constructor(public formBuilder:FormBuilder,public loadingCtrl:LoadingController ) { }
+  constructor() { }
 
   ngOnInit() {
-    this.regForm=this.formBuilder.group({
-      email:['',[Validators.required,Validators.email]],
-      password:['',[Validators.required]]
-
-    })
-  }*/
-
-  /*get errorControl(){
-    return this.regForm?.controls;
+    
   }
 
-  
-
-
-
-}*/
+}
 

@@ -1,21 +1,36 @@
-<ion-header [translucent]="true">
+<ion-header [translucent]="true"> 
   <ion-toolbar>
-    <ion-title>
-      <h1>Tvoja knjiga recepata</h1>
+    <ion-title class="naslov">
+     <h3>Tvoja knjiga recepata <ion-img src="assets/icon/knjiga.png"/> </h3>  
     </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Blank</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-list *ngFor="let recipe of recipes" >
+    <ion-card class="recept">
+      <ion-card-header>
+        <ion-card-title>{{recipe.name}}</ion-card-title>
 
-  <div id="container">
-    <strong>Ready to create an app?</strong>
-    <p>Start with Ionic <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
-  </div>
+      </ion-card-header>
+
+      <ion-card-content>
+
+       <ion-img *ngIf="recipe.category === 'slatko'" src="assets/icon/slatko.png" class="kategorija"></ion-img>
+      <ion-img *ngIf="recipe.category === 'slano'" src="assets/icon/slano.png" class="kategorija"></ion-img>
+
+        <p>{{recipe.category}}</p>
+      
+        <ion-row>
+          <ion-button (click)="goToRecipe(recipe)">Pogledaj recept</ion-button>
+        </ion-row>
+      </ion-card-content>
+    </ion-card>
+  </ion-list>
+
+  <ion-fab vertical="top" horizontal="end" class="dodaj">
+    <ion-fab-button (click)="goToAddPage()">
+      <ion-icon name="add">Dodaj</ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
