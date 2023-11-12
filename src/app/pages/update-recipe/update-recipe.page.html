@@ -1,13 +1,31 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>UpdateRecipe</ion-title>
+  <ion-toolbar> 
+    <ion-title><ion-img (click)="dismiss()" src="assets/icon/nazad.png"/><p>Izmenite recept</p></ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">UpdateRecipe</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <ion-card>
+    <ion-card-content>
+      <ion-item>
+        <ion-textarea label="Naziv recepta" placeholder="Unesite naziv" [(ngModel)]="recipe.name" labelPlacement="fixed"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        <ion-select label="Kategorija" placeholder="Izaberite kategoriju" [(ngModel)]="recipe.category" labelPlacement="fixed">
+          <ion-select-option value="slano">slano</ion-select-option>
+          <ion-select-option value="slatko">slatko</ion-select-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-textarea label="Recept" placeholder="Unesite tekst recepta" labelPlacement="fixed" [autoGrow]="true" [(ngModel)]="recipe.description"></ion-textarea>
+      </ion-item>
+
+      <ion-item>
+        
+        <ion-button id="update-recipe" (click)="updateRecipe()">Izmenite recept</ion-button>
+      </ion-item>
+    </ion-card-content>
+  </ion-card>
 </ion-content>

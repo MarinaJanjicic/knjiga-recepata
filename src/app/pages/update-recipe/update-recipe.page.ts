@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { DataService, Recipe } from 'src/app/service/data.service';
 
 @Component({
   selector: 'app-update-recipe',
@@ -7,9 +9,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class UpdateRecipePage implements OnInit {
 
-  constructor() { }
+  @Input() recipe:any;
+  number:number=0;
+  constructor(public modalCtrl:ModalController, private dataService:DataService) { }
 
   ngOnInit() {
+    console.log(this.recipe);
+  }
+
+  async dismiss(){
+    await this.modalCtrl.dismiss();
+  }
+  async updateRecipe(){
+    await this.dataService.updateRecipe(this.recipe);
   }
 
 }

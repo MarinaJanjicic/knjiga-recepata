@@ -49,7 +49,7 @@ export class DataService {
     return updateDoc(recipeRef, {
       name: recipe.name,
       category:recipe.category,
-      description:recipe.description
+      description:recipe.description,
     });
   }
 
