@@ -9,13 +9,13 @@ import {
 } from '@angular/fire/firestore';
 import { updateDoc } from 'firebase/firestore';
 
+
 //  atributi inferfejsa se moraju poklapati sa poljima u dokumentu Firebase baze podataka
 export interface Recipe {
-  id?: number;
-  date: string;
-  done: boolean;
-  name: string;
-  category: string;
+  id?:number;
+  name:string;
+  category:string;
+  description:string;
 }
 
 @Injectable({
@@ -23,5 +23,38 @@ export interface Recipe {
 })
 export class DataService {
 
-  constructor() { }
+  constructor(private firestore: Firestore) { }
+
+  //funkcija vraca recepte iz kolekcije
+  getRecipes() {
+    const recipesRef = collection(this.firestore, 'items');
+    return collectionData(recipesRef, { idField: 'id' });
+  }
+
+//funkcija za brisanje
+  deleteRecipe(recipe: Recipe) {
+    const recipeRef = doc(this.firestore, `items/${recipe.name}`);
+    return deleteDoc(recipeRef);
+  }
+
+  //funkcija za dodavanje
+  addRecipe(recipe: Recipe) {
+    
+    const recipeRef = collection(this.firestore, 'items');
+    return addDoc(recipeRef, recipe);
+  }
+
+  updateRecipe(recipe: Recipe) {
+    const recipeRef = doc(this.firestore, `items/${recipe.name}`);
+    return updateDoc(recipeRef, {
+      name: recipe.name,
+      category:recipe.category,
+      description:recipe.description
+    });
+  }
+
+  
+
+
 }
+

@@ -1,6 +1,6 @@
 <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>Unesite novi recept</ion-title>
+  <ion-toolbar> 
+    <ion-title><ion-img (click)="dismiss()" src="assets/icon/nazad.png"/><p>Unesite novi recept</p></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -8,24 +8,24 @@
   <ion-card>
     <ion-card-content>
       <ion-item>
-        <ion-textarea label="Ime recepta" placeholder="Unesite ime"></ion-textarea>
+        <ion-textarea label="Naziv recepta" placeholder="Unesite naziv" [(ngModel)]="recipeName" labelPlacement="fixed"></ion-textarea>
       </ion-item>
 
       <ion-item>
-        <ion-select label="Kategorija" placeholder="Izaberite kategoriju">
+        <ion-select label="Kategorija" placeholder="Izaberite kategoriju" [(ngModel)]="recipeCategory" labelPlacement="fixed">
           <ion-select-option value="slano">slano</ion-select-option>
           <ion-select-option value="slatko">slatko</ion-select-option>
         </ion-select>
       </ion-item>
 
       <ion-item>
-        <ion-textarea label="Recept" placeholder="Unesite recept" [autoGrow]="true"></ion-textarea>
+        <ion-textarea label="Recept" placeholder="Unesite tekst recepta" labelPlacement="fixed" [autoGrow]="true" [(ngModel)]="recipeDescription"></ion-textarea>
       </ion-item>
 
       <ion-item>
-        <ion-button>Dodaj recept</ion-button>
+        
+        <ion-button id="add-recipe" (click)="addRecipe()">Dodaj recept</ion-button>
       </ion-item>
-
     </ion-card-content>
   </ion-card>
 </ion-content>
