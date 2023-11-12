@@ -25,10 +25,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/landing/landing.module').then( m => m.LandingPageModule)
   },
   {
-    path: 'resset-password',
-    loadChildren: () => import('./pages/resset-password/resset-password.module').then( m => m.RessetPasswordPageModule)
-  },
-  {
     path: 'recipe',
     loadChildren: () => import('./pages/recipe/recipe.module').then( m => m.RecipePageModule)
   },

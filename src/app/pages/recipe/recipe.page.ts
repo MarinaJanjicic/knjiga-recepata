@@ -1,5 +1,5 @@
 import { Component, Input, OnDestroy, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { AlertController, ModalController } from '@ionic/angular';
 import { AddNewRecipePage } from '../add-new-recipe/add-new-recipe.page';
 import { UpdateRecipePage } from '../update-recipe/update-recipe.page';
 import { DataService, Recipe } from 'src/app/service/data.service';
@@ -15,7 +15,7 @@ export class RecipePage implements OnInit, OnDestroy {
   @Input() recipe: any;
   recipes:any;
   sub: Subscription = new Subscription;
-  constructor(public modalCtrl: ModalController, private dataService:DataService) { }
+  constructor(public modalCtrl: ModalController, private dataService:DataService, public alertController:AlertController) { }
 
   ngOnInit() {
     this.getData(); 
@@ -39,6 +39,9 @@ export class RecipePage implements OnInit, OnDestroy {
     })
   }
   
+  async dismiss(){
+    await this.modalCtrl.dismiss();
+  }
 
   async goToUpdatePage(recipe: Recipe) {
 
@@ -53,6 +56,27 @@ export class RecipePage implements OnInit, OnDestroy {
   async deleteRecipe(recipe:any)
   {
     await this.dataService.deleteRecipe(recipe);
+    this.dismiss();
   }
 
+  async showDeleteAlert() {
+    const alert = await this.alertController.create({
+      header: 'Izbrisi recept',
+      message: 'Jeste li sigurni da zelite izbrisati ovaj recept?',
+      buttons: [
+        {
+          text: 'Otkazi',
+          role: 'cancel',
+          cssClass: 'secondary',
+        }, {
+          text: 'Izbrisi',
+          handler: () => {
+            this.deleteRecipe(this.recipe);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
 }

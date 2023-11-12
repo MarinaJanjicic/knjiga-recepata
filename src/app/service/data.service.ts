@@ -33,7 +33,7 @@ export class DataService {
 
 //funkcija za brisanje
   deleteRecipe(recipe: Recipe) {
-    const recipeRef = doc(this.firestore, `items/${recipe.name}`);
+    const recipeRef = doc(this.firestore, `items/${recipe.id}`);
     return deleteDoc(recipeRef);
   }
 
@@ -45,7 +45,7 @@ export class DataService {
   }
 
   updateRecipe(recipe: Recipe) {
-    const recipeRef = doc(this.firestore, `items/${recipe.name}`);
+    const recipeRef = doc(this.firestore, `items/${recipe.id}`);
     return updateDoc(recipeRef, {
       name: recipe.name,
       category:recipe.category,

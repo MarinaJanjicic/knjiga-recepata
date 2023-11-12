@@ -22,6 +22,7 @@ export class UpdateRecipePage implements OnInit {
   }
   async updateRecipe(){
     await this.dataService.updateRecipe(this.recipe);
+    this.dismiss();
   }
 
 }
