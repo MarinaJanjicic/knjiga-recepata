@@ -3,11 +3,11 @@ import {
   collection,
   Firestore,
   collectionData,
-  doc,
   deleteDoc,
-  addDoc
+  addDoc,
+  doc,
+  updateDoc
 } from '@angular/fire/firestore';
-import { updateDoc } from 'firebase/firestore';
 
 
 //  atributi inferfejsa se moraju poklapati sa poljima u dokumentu Firebase baze podataka
@@ -45,12 +45,17 @@ export class DataService {
   }
 
   updateRecipe(recipe: Recipe) {
+    
     const recipeRef = doc(this.firestore, `items/${recipe.id}`);
+ 
+    console.log(recipeRef);
     return updateDoc(recipeRef, {
+      category: recipe.category,
+      description: recipe.description,
       name: recipe.name,
-      category:recipe.category,
-      description:recipe.description,
+
     });
+   
   }
 
   
