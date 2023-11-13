@@ -18,6 +18,13 @@ export interface Recipe {
   description:string;
 }
 
+export interface User {
+  
+  email:string;
+  password:string;
+  
+}
+
 @Injectable({
   providedIn: 'root'
 })
@@ -42,6 +49,13 @@ export class DataService {
     
     const recipeRef = collection(this.firestore, 'items');
     return addDoc(recipeRef, recipe);
+  }
+  
+//dodavanje usera
+  addUser(user: User) {
+    
+    const userRef = collection(this.firestore, 'users');
+    return addDoc(userRef, user);
   }
 
   updateRecipe(recipe: Recipe) {

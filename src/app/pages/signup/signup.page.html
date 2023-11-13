@@ -1,7 +1,7 @@
 <ion-content [fullscreen]="true">
   <div class="header">
-    <ion-title class="title">Dobrodošli</ion-title>
-    <p class="subtitle">Kreirajte svoj nalog<p>
+    <ion-title class="title">Dobrodošli!</ion-title>
+    <p class="subtitle">Kreirajte svoj nalog</p>
   </div>
 
   <form [formGroup]="regForm" novalidate>
@@ -26,6 +26,9 @@
       <div *ngIf="this.regForm.controls?.['password'].dirty &&  this.regForm.controls?.['password'].invalid">
         <ion-text *ngIf="errorControl.password.errors?.required" color="danger">
           Šifra je obavezna
+        </ion-text>
+        <ion-text *ngIf="errorControl.password.errors?.pattern" color="danger">
+          Šifra mora imati izmedju 6 i 20 karaktera
         </ion-text>
       </div>
       <div class="loginLink">

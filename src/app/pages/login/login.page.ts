@@ -25,31 +25,48 @@ export class LoginPage implements OnInit {
     return this.loginForm?.controls;
   }
 
+
+
   async login(){
     const loading= await this.loadingCtrl.create();
     await loading.present();
     if(this.loginForm?.valid){
       const user=await this.authService.loginUser(this.loginForm.value.email,this.loginForm.value.password).catch((error)=>{
+        this.showLoginAlert();
         console.log(error);
         loading.dismiss();
         
-        
-      
     })
 
       if(user){
         loading.dismiss()
         this.router.navigate(['/home'])
-      }else{
-        
-        console.log('provide correct values');
       }
+      
+  
+    }
+    else{
+    
+      loading.dismiss();
+      this.showLoginAlert();
     }
   }
 
   
+  async showLoginAlert() {
+    const alert = await this.alertController.create({
+      header: 'Neispravni parametri',
+      message: 'Netacno unet email ili sifra',
+      buttons: [
+        {
+          text: 'OK',
+          role: 'cancel',
+          cssClass: 'secondary',
+        }
+      ]
+    });
+alert.present();
 
 
-
-}
+}}
 

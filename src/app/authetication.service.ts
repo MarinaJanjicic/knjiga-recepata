@@ -24,4 +24,5 @@ export class AutheticationService {
     return await this.ngFireAuth.currentUser
   }
 
+
 }

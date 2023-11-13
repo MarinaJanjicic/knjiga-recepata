@@ -1,7 +1,7 @@
 
 <ion-content [fullscreen]="true">
   <div class="header">
-    <ion-title class="title">Zdravo</ion-title>
+    <ion-title class="title">Zdravo!</ion-title>
     <p class="subTitle">Prijavite se na vas nalog<p>
   </div>
 
@@ -14,6 +14,9 @@
       <div *ngIf="this.loginForm.controls?.['email'].dirty &&  this.loginForm.controls?.['email'].invalid">
         <ion-text *ngIf="errorControl.email.errors?.required" color="danger">
           Email je obavezan
+        </ion-text>
+        <ion-text *ngIf="errorControl.email.errors?.pattern" color="danger">
+          Email mora biti validan
         </ion-text>
       </div>
       <ion-item>
