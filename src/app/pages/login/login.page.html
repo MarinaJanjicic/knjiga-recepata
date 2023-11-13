@@ -1,31 +1,38 @@
-<!--<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>-->
 
 <ion-content [fullscreen]="true">
   <div class="header">
-    <ion-title class="title">Welcome back</ion-title>
-    <p class="subTitle">Sign in to access your account<p>
+    <ion-title class="title">Zdravo</ion-title>
+    <p class="subTitle">Prijavite se na vas nalog<p>
   </div>
 
-  <form>
+  <form [formGroup]="loginForm" novalidate>
     <div class="ion-padding">
       <ion-item>
-        <ion-input placeholder="email" class="input"></ion-input>
+        <ion-input formControlName="email" placeholder="email" class="input"></ion-input>
         <ion-icon name="person-outline"></ion-icon>
       </ion-item>
+      <div *ngIf="this.loginForm.controls?.['email'].dirty &&  this.loginForm.controls?.['email'].invalid">
+        <ion-text *ngIf="errorControl.email.errors?.required" color="danger">
+          Email je obavezan
+        </ion-text>
+      </div>
       <ion-item>
-        <ion-input placeholder="password"class="input"></ion-input>
+        <ion-input formControlName="password" placeholder="sifra"class="input" type="password"></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
+      <div *ngIf="this.loginForm.controls?.['password'].dirty &&  this.loginForm.controls?.['password'].invalid">
+        <ion-text *ngIf="errorControl.password.errors?.required" color="danger">
+          Šifra je obavezna
+        </ion-text>
+      </div>
+
+
       <div class="signupLink">
-        <p> New member? <a [routerLink]="['/signup']">Signup now</a></p>
+        <p> Nemate nalog? <a [routerLink]="['/signup']">Kreirajte ga</a></p>
       </div>
     </div>
     <ion-fab vertical="bottom" horizontal="end" style="margin-bottom:30px">
-      <ion-fab-button [routerLink]="['/home']">
+      <ion-fab-button (click)="login()">
         <ion-icon name="chevron-forward">
         </ion-icon>
       </ion-fab-button>

@@ -4,6 +4,8 @@ import { RecipePage } from '../pages/recipe/recipe.page';
 import { AddNewRecipePage } from '../pages/add-new-recipe/add-new-recipe.page';
 import { Subscription } from 'rxjs';
 import { DataService } from '../service/data.service';
+import { AutheticationService } from 'src/app/authetication.service';
+import { Router } from '@angular/router';
 
 
 type Recipe = {
@@ -19,10 +21,10 @@ type Recipe = {
 })
 export class HomePage implements OnInit{
 
-  recipes:any;
+  recipes:any
   sub: Subscription = new Subscription;
   
-  constructor( public modalCtrl: ModalController,private dataService: DataService) {}
+  constructor( public modalCtrl: ModalController,private dataService: DataService,private authService:AutheticationService,private router:Router) {}
   
   ngOnDestroy(): void {
     this.sub.unsubscribe();
@@ -53,6 +55,11 @@ export class HomePage implements OnInit{
       component: AddNewRecipePage
     })
     return await modal.present();
+  }
+
+  async logout(){
+    this.authService.signOut();
+    this.router.navigate(['/login']);
   }
  
 

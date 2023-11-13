@@ -1,25 +1,39 @@
 <ion-content [fullscreen]="true">
   <div class="header">
-    <ion-title class="title">Welcome</ion-title>
-    <p class="subtitle">Sign up to create your account<p>
+    <ion-title class="title">Dobrodošli</ion-title>
+    <p class="subtitle">Kreirajte svoj nalog<p>
   </div>
 
-  <form>
+  <form [formGroup]="regForm" novalidate>
     <div class="ion-padding">
       <ion-item>
-        <ion-input placeholder="email" class="input"></ion-input>
+        <ion-input formControlName="email" placeholder="email" class="input"></ion-input>
         <ion-icon name="person-outline"></ion-icon>
       </ion-item>
+      <div *ngIf="this.regForm.controls?.['email'].dirty &&  this.regForm.controls?.['email'].invalid">
+        <ion-text *ngIf="errorControl.email.errors?.required" color="danger">
+          Email je obavezan
+        </ion-text>
+        <ion-text *ngIf="errorControl.email.errors?.pattern" color="danger">
+          Email mora biti validan
+        </ion-text>
+      </div>
+
       <ion-item>
-        <ion-input placeholder="password" class="input"></ion-input>
+        <ion-input formControlName="password" placeholder="sifra" class="input" type="password"></ion-input>
         <ion-icon name="lock-closed-outline"></ion-icon>
       </ion-item>
-      <div class="siginLink">
-        <p> Already a member? <a [routerLink]="['/login']">Login now</a></p>
+      <div *ngIf="this.regForm.controls?.['password'].dirty &&  this.regForm.controls?.['password'].invalid">
+        <ion-text *ngIf="errorControl.password.errors?.required" color="danger">
+          Šifra je obavezna
+        </ion-text>
+      </div>
+      <div class="loginLink">
+        <p> Već imate svoj nalog?  <a [routerLink]="['/login']">Prijavite se</a></p>
       </div>
     </div>
     <ion-fab vertical="bottom" horizontal="end" style="margin-bottom:30px">
-      <ion-fab-button [routerLink]="['/home']">
+      <ion-fab-button (click)="signUp()" >
         <ion-icon name="chevron-forward">
         </ion-icon>
       </ion-fab-button>
