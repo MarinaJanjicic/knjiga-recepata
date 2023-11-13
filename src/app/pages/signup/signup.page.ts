@@ -34,7 +34,7 @@ export class SignupPage implements OnInit {
     if(this.regForm?.valid){
       const user=await this.authService.registerUser(this.regForm.value.email,this.regForm.value.password).catch((error)=>{
         console.log(error);
-       
+        this.showLoginAlert();
         loading.dismiss();
       })
 
@@ -42,13 +42,9 @@ export class SignupPage implements OnInit {
         loading.dismiss();
         this.addUser();
         this.router.navigate(['/home']);
-      }else{
-        console.log('provide correct values');
       }
 
-      
-
-      
+   
     }
     else{
       this.showLoginAlert();
